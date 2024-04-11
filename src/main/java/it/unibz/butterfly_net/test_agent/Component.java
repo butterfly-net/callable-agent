@@ -1,4 +1,4 @@
-package it.unibz.butterfly_net.template;
+package it.unibz.butterfly_net.test_agent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
