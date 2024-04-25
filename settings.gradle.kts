@@ -1,2 +1,2 @@
-rootProject.name = "test_agent"
+rootProject.name = "callable_agent"
 

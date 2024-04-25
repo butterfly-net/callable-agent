@@ -1,9 +1,9 @@
-package it.unibz.butterfly_net.test_agent.application;
+package it.unibz.butterfly_net.callable_agent.application;
 
 import io.javalin.Javalin;
 import io.javalin.http.HttpStatus;
-import it.unibz.butterfly_net.test_agent.core.Analyzer;
-import it.unibz.butterfly_net.test_agent.core.utils.Config;
+import it.unibz.butterfly_net.callable_agent.core.Analyzer;
+import it.unibz.butterfly_net.callable_agent.core.utils.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

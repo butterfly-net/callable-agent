@@ -1,8 +1,8 @@
-package it.unibz.butterfly_net.test_agent;
+package it.unibz.butterfly_net.callable_agent;
 
-import it.unibz.butterfly_net.test_agent.application.HttpClient;
-import it.unibz.butterfly_net.test_agent.application.HttpServer;
-import it.unibz.butterfly_net.test_agent.core.Analyzer;
+import it.unibz.butterfly_net.callable_agent.application.HttpClient;
+import it.unibz.butterfly_net.callable_agent.application.HttpServer;
+import it.unibz.butterfly_net.callable_agent.core.Analyzer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

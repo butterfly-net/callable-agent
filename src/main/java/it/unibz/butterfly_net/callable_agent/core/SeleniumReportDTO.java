@@ -1,4 +1,4 @@
-package it.unibz.butterfly_net.test_agent.core;
+package it.unibz.butterfly_net.callable_agent.core;
 
 public record SeleniumReportDTO(
         Long projectId,

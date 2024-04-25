@@ -1,10 +1,10 @@
-package it.unibz.butterfly_net.test_agent.application;
+package it.unibz.butterfly_net.callable_agent.application;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import it.unibz.butterfly_net.test_agent.core.ExternalCommunicator;
-import it.unibz.butterfly_net.test_agent.core.SeleniumReportDTO;
-import it.unibz.butterfly_net.test_agent.core.utils.Config;
+import it.unibz.butterfly_net.callable_agent.core.ExternalCommunicator;
+import it.unibz.butterfly_net.callable_agent.core.SeleniumReportDTO;
+import it.unibz.butterfly_net.callable_agent.core.utils.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 
 public class HttpClient implements ExternalCommunicator {
     private final Logger logger = LoggerFactory.getLogger(HttpClient.class);
