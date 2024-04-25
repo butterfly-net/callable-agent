@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class HttpClient implements ExternalCommunicator {
     private final Logger logger = LoggerFactory.getLogger(HttpClient.class);
@@ -28,8 +29,34 @@ public class HttpClient implements ExternalCommunicator {
         projectHeaderKey = config.property("PROJECT_HEADER_KEY");
     }
 
+    public HttpRequest createPostRequest(String url, String jsonBody) {
+        return createPostRequest(url, jsonBody, Map.of());
+    }
+
+    public HttpRequest createPostRequest(String url, String jsonBody, Map<String, String> headers) {
+        HttpRequest.Builder builder = HttpRequest
+                .newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody));
+
+        headers.forEach(builder::header);
+
+        return builder.build();
+    }
+
     @Override
     public void communicate(SeleniumReportDTO reportDTO) {
+        String bodyJson = prepareRequestBodyAsJson(reportDTO);
+
+        HttpRequest request = createPostRequest(ingestionApiAddress, bodyJson, Map.of(
+                authHeaderKey, authHeaderValue,
+                projectHeaderKey, String.valueOf(reportDTO.projectId())
+        ));
+
+        sendRequest(request);
+    }
+
+    private String prepareRequestBodyAsJson(SeleniumReportDTO reportDTO) {
         ObjectMapper mapper = new ObjectMapper();
         String bodyJson = null;
         try {
@@ -37,14 +64,10 @@ public class HttpClient implements ExternalCommunicator {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        HttpRequest request = HttpRequest
-                .newBuilder()
-                .uri(URI.create(ingestionApiAddress))
-                .header(authHeaderKey, authHeaderValue)
-                .header(projectHeaderKey, String.valueOf(reportDTO.projectId()))
-                .POST(HttpRequest.BodyPublishers.ofString(bodyJson))
-                .build();
+        return bodyJson;
+    }
 
+    public void sendRequest(HttpRequest request) {
         java.net.http.HttpClient httpClient = java.net.http.HttpClient.newHttpClient();
         try {
             httpClient.send(request, HttpResponse.BodyHandlers.ofString());
