@@ -31,6 +31,7 @@ public class HttpServer {
 
         app.post("/dispatch", ctx -> {
             AnalysisRequestDTO dto = ctx.bodyAsClass(AnalysisRequestDTO.class);
+            logger.info(String.format("Received %s", dto));
 
             String message = String.format("Dispatching report on #%d", dto.projectId());
             logger.info(message);

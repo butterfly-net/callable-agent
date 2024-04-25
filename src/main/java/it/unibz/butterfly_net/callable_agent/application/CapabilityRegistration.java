@@ -43,7 +43,7 @@ public class CapabilityRegistration {
                             ),
                             "parserInputDescriptors", Set.of(
                                     Map.of(
-                                            "type", "Long",
+                                            "type", "Integer",
                                             "name", "projectId",
                                             "required", true
                                     ),
